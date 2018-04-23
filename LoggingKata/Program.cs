@@ -50,7 +50,7 @@ namespace LoggingKata
                 }
             }
             Console.WriteLine($"The Greatest furthest tacobells apart are: \n\t{a.Name}\n\t{b.Name}.");
-            Console.WriteLine($"And the distance between them is {Math.Round(distance/1000.0)} kilometers.");
+            Console.WriteLine($"And the distance between them is {Math.Round(distance* 0.00062137)} miles.");
             Console.ReadLine();
         }
     }
