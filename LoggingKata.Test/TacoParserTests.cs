@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using LoggingKata;
 
 namespace LoggingKata.Test
 {
@@ -12,18 +13,34 @@ namespace LoggingKata.Test
         }
 
         [Theory]
-        [InlineData("Example")]
-        public void ShouldParse(string str)
+        [InlineData("123,123,testing")]
+        [InlineData("123,123")]
+        public void ShouldParse(string line)
         {
-            // TODO: Complete Should Parse
+            // Arrange
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.NotNull(result);
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void ShouldFailParse(string str)
+        [InlineData("abc,abc,abc")]
+        public void ShouldFailParse(string line)
         {
-            // TODO: Complete Should Fail Parse
+            // Arrange
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.Null(result);
         }
     }
 }

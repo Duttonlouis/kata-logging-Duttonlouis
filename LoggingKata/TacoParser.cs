@@ -12,6 +12,8 @@ namespace LoggingKata
         {
             logger.LogInfo("Begin parsing");
 
+            if (string.IsNullOrEmpty(line)) { return null; }
+
             var cells = line.Split(',');
 
             if (cells.Length < 3)

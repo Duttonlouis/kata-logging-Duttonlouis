@@ -17,7 +17,7 @@ namespace LoggingKata
         public const string logMessageUnableToParseLine = "Unable to parse line - ";
         public const string logMessageLength = "length < 3 Line=";
         public const char splitChar = ',';
-        public const string argumentExceptionLongitude = "Invalid Value for longitude greater than 180.00 or less than -180.00";
-        public const string argumentExceptionLatitude = "Invalid Value for latitude greater than 90.00 or less than -90.00";
+        public const string argumentExceptionLongitude = "Invalid Value for longitude greater than 180.00 || less than -180.00";
+        public const string argumentExceptionLatitude = "Invalid Value for latitude greater than 90.00 || less than -90.00";
     }
 }
