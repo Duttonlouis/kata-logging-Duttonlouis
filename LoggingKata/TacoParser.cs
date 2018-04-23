@@ -31,6 +31,10 @@ namespace LoggingKata
             try
             {
                 longitude = double.Parse(cells[0]);
+                if (longitude > Argu.maxLongitude || longitude < Argu.minLongitude)
+                {
+                    throw new ArgumentOutOfRangeException(Argu.argumentExceptionLongitude);
+                }
             }
             catch
             {
@@ -40,6 +44,10 @@ namespace LoggingKata
             try
             {
                 latitude = double.Parse(cells[1]);
+                if (latitude > Argu.maxLatitude || latitude < Argu.minLatitude)
+                {
+                    throw new ArgumentOutOfRangeException(Argu.argumentExceptionLatitude);
+                }
             }
             catch
             {
