@@ -31,6 +31,8 @@ namespace LoggingKata.Test
         [InlineData(null)]
         [InlineData("")]
         [InlineData("abc,abc,abc")]
+        [InlineData("1000, 1000, abc")]
+        [InlineData("123,123,123")]
         public void ShouldFailParse(string line)
         {
             // Arrange

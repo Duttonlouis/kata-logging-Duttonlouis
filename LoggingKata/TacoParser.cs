@@ -27,15 +27,34 @@ namespace LoggingKata
             // grab the long from your array at index 0
             // grab the lat from your array at index 1
             // grab the name from your array at index 2
-            
-            
-             longitude = double.Parse(cells[0]);
-             latitude = double.Parse(cells[1]);
-             name = cells[2];
 
-
-
-
+            try
+            {
+                longitude = double.Parse(cells[0]);
+            }
+            catch
+            {
+                logger.LogError("unable to parse longitude");
+                return null;
+            }
+            try
+            {
+                latitude = double.Parse(cells[1]);
+            }
+            catch
+            {
+                logger.LogError("unable to parse latitude");
+                return null;
+            }
+            try
+            {
+                name = cells[2];
+            }
+            catch
+            {
+                logger.LogError("unable to parse name");
+                return null;
+            }
 
             // Your going to need to parse your string as a `double`
             // which is similar to parse a string as an `int`
