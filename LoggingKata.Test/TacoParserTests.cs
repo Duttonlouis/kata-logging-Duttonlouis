@@ -13,15 +13,16 @@ namespace LoggingKata.Test
         }
 
         [Theory]
-        [InlineData("123,123,testing")]
-        [InlineData("123,123")]
+        [InlineData("-84.677017, 34.073638,\"Taco Bell Acwort... (Free trial * Add to Cart for a full POI info)\"")]
+        [InlineData("1,1")]
+        [InlineData("1,1,testing")]
         public void ShouldParse(string line)
         {
             // Arrange
             var parser = new TacoParser();
 
             // Act
-            var result = parser.Parse(line);
+            var result = parser.Parse(line);    
 
             // Assert
             Assert.NotNull(result);
@@ -33,6 +34,7 @@ namespace LoggingKata.Test
         [InlineData("abc,abc,abc")]
         [InlineData("1000, 1000, abc")]
         [InlineData("123,123,123")]
+        [InlineData(",,")]
         public void ShouldFailParse(string line)
         {
             // Arrange

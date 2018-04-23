@@ -16,74 +16,45 @@ namespace LoggingKata
 
             var cells = line.Split(',');
 
-            if (cells.Length < 3)
+            if (cells.Length < 2)
             {
+                logger.LogWarning("You don't have both values to parse");
                 return null;
             }
-            var longitude = 0.0;
-            var latitude = 0.0;
-            var name = "";
-
-            // grab the long from your array at index 0
-            // grab the lat from your array at index 1
-            // grab the name from your array at index 2
 
             try
             {
-                longitude = double.Parse(cells[0]);
+                var longitude = double.Parse(cells[0]);
+                var latitude = double.Parse(cells[1]);
                 if (longitude > Argu.maxLongitude || longitude < Argu.minLongitude)
                 {
-                    throw new ArgumentOutOfRangeException(Argu.argumentExceptionLongitude);
+                    // Log something
+                    return null;
                 }
-            }
-            catch
-            {
-                logger.LogError("unable to parse longitude");
-                return null;
-            }
-            try
-            {
-                latitude = double.Parse(cells[1]);
+
                 if (latitude > Argu.maxLatitude || latitude < Argu.minLatitude)
                 {
-                    throw new ArgumentOutOfRangeException(Argu.argumentExceptionLatitude);
+                    // Log something
+                    return null;
                 }
+
+                var point = new Point
+                {
+                    Longitude = longitude,
+                    Latitude = latitude
+                };
+
+                return new Tacobell
+                {
+                    Location = point,
+                    Name = cells.Length > 2 ? cells[2].Replace("\"", "") : null
+                };
             }
-            catch
+            catch (Exception ex)
             {
-                logger.LogError("unable to parse latitude");
+                logger.LogError("unable to parse longitude", ex);
                 return null;
             }
-            try
-            {
-                name = cells[2];
-            }
-            catch
-            {
-                logger.LogError("unable to parse name");
-                return null;
-            }
-
-            // Your going to need to parse your string as a `double`
-            // which is similar to parse a string as an `int`
-
-            // You'll need to create a TacoBell class
-            // that conforms to ITrackable
-
-            // Then, you'll need an instance of the TacoBell class
-            // With the name and point set correctly
-            var tacoBell = new Tacobell();
-            var point = new Point();
-            // Then, return the instance of your TacoBell class
-            // Since it conforms to ITrackable
-
-            
-            point.Longitude = longitude;
-            point.Latitude = latitude;
-            tacoBell.Location = point;
-            tacoBell.Name = name.Replace("\"","");
-            return tacoBell;
-
         }
     }
 }
