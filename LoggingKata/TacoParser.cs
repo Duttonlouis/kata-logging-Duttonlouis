@@ -7,7 +7,7 @@ namespace LoggingKata
 
         public ITrackable Parse(string line)
         {
-            logger.LogInfo("Begin parsing");
+            //logger.LogInfo("Begin parsing");
 
             if (string.IsNullOrEmpty(line)) { return null; }
 
