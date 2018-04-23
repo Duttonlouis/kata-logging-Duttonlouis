@@ -1,9 +1,6 @@
 ﻿using System;
 namespace LoggingKata
 {
-    /// <summary>
-    /// Parses a POI file to locate all the TacoBells
-    /// </summary>
     public class TacoParser
     {
         readonly ILog logger = new TacoLogger();
@@ -28,13 +25,13 @@ namespace LoggingKata
                 var latitude = double.Parse(cells[1]);
                 if (longitude > Argu.maxLongitude || longitude < Argu.minLongitude)
                 {
-                    // Log something
+                    logger.LogError("You don't have a valid max/min longitude");
                     return null;
                 }
 
                 if (latitude > Argu.maxLatitude || latitude < Argu.minLatitude)
                 {
-                    // Log something
+                    logger.LogError("You don't have a valid max/min latitude");
                     return null;
                 }
 

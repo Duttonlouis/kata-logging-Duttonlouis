@@ -9,7 +9,6 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
-            // TODO: Complete Something, if anything
         }
 
         [Theory]
@@ -18,13 +17,10 @@ namespace LoggingKata.Test
         [InlineData("1,1,testing")]
         public void ShouldParse(string line)
         {
-            // Arrange
             var parser = new TacoParser();
 
-            // Act
             var result = parser.Parse(line);    
 
-            // Assert
             Assert.NotNull(result);
         }
 
@@ -37,13 +33,10 @@ namespace LoggingKata.Test
         [InlineData(",,")]
         public void ShouldFailParse(string line)
         {
-            // Arrange
             var parser = new TacoParser();
 
-            // Act
             var result = parser.Parse(line);
 
-            // Assert
             Assert.Null(result);
         }
     }
