@@ -16,8 +16,6 @@ namespace LoggingKata
 
             var lines = File.ReadAllLines(csvPath);
 
-            //logger.LogInfo($"Lines: {lines[0]}");
-
             var parser = new TacoParser();
 
             var locations = lines.Select(parser.Parse);

@@ -23,13 +23,13 @@ namespace LoggingKata
             {
                 var longitude = double.Parse(cells[0]);
                 var latitude = double.Parse(cells[1]);
-                if (longitude > Argu.maxLongitude || longitude < Argu.minLongitude)
+                if (longitude > 180.00 || longitude < -180.00)
                 {
                     logger.LogError("You don't have a valid max/min longitude");
                     return null;
                 }
 
-                if (latitude > Argu.maxLatitude || latitude < Argu.minLatitude)
+                if (latitude > 90.00 || latitude < -90.00)
                 {
                     logger.LogError("You don't have a valid max/min latitude");
                     return null;
