@@ -1,18 +1,57 @@
-﻿namespace LoggingKata
+﻿using System;
+namespace LoggingKata
 {
-    /// <summary>
-    /// Parses a POI file to locate all the TacoBells
-    /// </summary>
     public class TacoParser
     {
         readonly ILog logger = new TacoLogger();
-        
+
         public ITrackable Parse(string line)
         {
-            logger.LogInfo("Begin parsing");
+            //logger.LogInfo("Begin parsing");
 
-            //DO not fail if one record parsing fails, return null
-            return null; //TODO Implement
+            if (string.IsNullOrEmpty(line)) { return null; }
+
+            var cells = line.Split(',');
+
+            if (cells.Length < 2)
+            {
+                logger.LogWarning("You don't have both values to parse");
+                return null;
+            }
+
+            try
+            {
+                var longitude = double.Parse(cells[0]);
+                var latitude = double.Parse(cells[1]);
+                if (longitude > 180.00 || longitude < -180.00)
+                {
+                    logger.LogError("You don't have a valid max/min longitude");
+                    return null;
+                }
+
+                if (latitude > 90.00 || latitude < -90.00)
+                {
+                    logger.LogError("You don't have a valid max/min latitude");
+                    return null;
+                }
+
+                var point = new Point
+                {
+                    Longitude = longitude,
+                    Latitude = latitude
+                };
+
+                return new Tacobell
+                {
+                    Location = point,
+                    Name = cells.Length > 2 ? cells[2].Replace("\"", "") : null
+                };
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("unable to parse longitude", ex);
+                return null;
+            }
         }
     }
 }
